@@ -12,8 +12,12 @@ import { SigninPage } from '../pages/signin/signin';
 import { SignupPage } from '../pages/signup/signup';
 import { ForgotPasswordPage } from '../pages/forgot-password/forgot-password';
 
-
 //Services
+import { AuthenticationProvider } from '../providers/authentication/authentication';
+
+//Modules
+import { IonicStorageModule } from '@ionic/storage';
+import { UserInfoProvider } from '../providers/user-info/user-info';
 
 @NgModule({
   declarations: [
@@ -27,6 +31,7 @@ import { ForgotPasswordPage } from '../pages/forgot-password/forgot-password';
     HttpModule,
     BrowserModule,
     FormsModule,
+    IonicStorageModule.forRoot(),
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -41,6 +46,8 @@ import { ForgotPasswordPage } from '../pages/forgot-password/forgot-password';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    AuthenticationProvider,
+    UserInfoProvider,
   ]
 })
 export class AppModule {}

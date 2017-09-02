@@ -4,27 +4,39 @@ import { HomePage } from '../home/home';
 import { SignupPage } from '../signup/signup';
 import { ForgotPasswordPage } from '../forgot-password/forgot-password';
 
+//Services
+import { AuthenticationProvider } from '../../providers/authentication/authentication';
+
 @Component({
   selector: 'page-signin',
   templateUrl: 'signin.html',
 })
 export class SigninPage {
-  email:string = '';
-  password:string;
+  email: string = '';
+  password: string;
 
-  constructor(public navCtrl: NavController) {}
+  constructor(
+    public navCtrl: NavController,
+    private api: AuthenticationProvider
+  ) { }
 
-  forgotPassword(){
+  forgotPassword() {
     this.navCtrl.push(ForgotPasswordPage, {
       email: this.email
     });
   }
 
-  signup(){
+  signup() {
     this.navCtrl.push(SignupPage)
   }
 
-  signin(){
-
+  signin() {
+    this.api.login(this.email.trim().toLowerCase(), this.password)
+      .then(dado => {
+        this.navCtrl.setRoot(HomePage, {}, {
+          animate: true, 
+          direction: 'forward'
+        });
+      });
   }
 }
