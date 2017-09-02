@@ -1,3 +1,4 @@
+import { AuthenticationProvider } from './../../providers/authentication/authentication';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { User } from '../../models/user';
@@ -7,23 +8,30 @@ import { User } from '../../models/user';
   templateUrl: 'signup.html',
 })
 export class SignupPage {
-  user = {name:'', email:'', confirmEmail:'',password:'',confirmPassword:''}
+  user = { name: '', email: '', confirmEmail: '', password: '', confirmPassword: '' }
 
   submitted = false;
 
-  constructor(public navCtrl: NavController) {
-    console.log(this.user);
+  constructor(
+    public navCtrl: NavController,
+    private api: AuthenticationProvider) { }
+
+  onSubmit() {
+    this.api.postAccount(
+      this.user.name.trim(),
+      this.user.email.trim().toLowerCase(),
+      this.user.confirmEmail.trim().toLowerCase(),
+      this.user.password,
+      this.user.confirmPassword)
+      .then(dado => {
+        console.log(dado);
+      });
   }
 
-  onSubmit(){
-
+  saveUser() {
   }
 
-  saveUser(){
-
-  }
-
-  back(){
+  back() {
     this.navCtrl.pop();
   }
 

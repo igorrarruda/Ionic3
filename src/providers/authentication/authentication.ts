@@ -70,7 +70,7 @@ export class AuthenticationProvider {
     return new Promise((resolve, reject) => {
       this.http.post(this.api_url + '/users', body, options)
         .map(response => {
-          
+          console.log(response);
           // this.userInfo.accessToken = response.headers.get("access-token");
           // this.userInfo.client = response.headers.get("client");
           // this.userInfo.email = response.headers.get("uid");
