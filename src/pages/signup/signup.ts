@@ -17,14 +17,12 @@ export class SignupPage {
     private api: AuthenticationProvider) { }
 
   onSubmit() {
-    this.api.postAccount(
-      this.user.name.trim(),
-      this.user.email.trim().toLowerCase(),
-      this.user.confirmEmail.trim().toLowerCase(),
-      this.user.password,
-      this.user.confirmPassword)
+    this.api.postAccount(this.user)
       .then(dado => {
-        console.log(dado);
+        this.navCtrl.pop();
+      })
+      .catch(err => {
+        console.log("Error: ", err);
       });
   }
 

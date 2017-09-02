@@ -18,6 +18,7 @@ import { AuthenticationProvider } from '../providers/authentication/authenticati
 //Modules
 import { IonicStorageModule } from '@ionic/storage';
 import { UserInfoProvider } from '../providers/user-info/user-info';
+import { PartnersProvider } from '../providers/partners/partners';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { UserInfoProvider } from '../providers/user-info/user-info';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthenticationProvider,
     UserInfoProvider,
+    PartnersProvider,
   ]
 })
 export class AppModule {}

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
-
+import { Events } from 'ionic-angular';
 /*
   Generated class for the UserInfoProvider provider.
 
@@ -14,7 +14,10 @@ export class UserInfoProvider {
   accessToken: string;
   client: string;
 
-  constructor(private storage: Storage) {
+  constructor(
+    private storage: Storage,
+    private event: Events
+  ) {
     this.storage.get("accessToken").then(accessToken => {
       if (accessToken != null && accessToken != '') {
         this.accessToken = accessToken;
@@ -28,6 +31,7 @@ export class UserInfoProvider {
     this.storage.get("client").then(client => {
       if (client != null && client != '') {
         this.client = client;
+        this.event.publish("user:loaded");
       };
     });
   }

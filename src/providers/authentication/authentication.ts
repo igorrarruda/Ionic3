@@ -54,33 +54,22 @@ export class AuthenticationProvider {
     });
   }
 
-  postAccount(name: string, email: string, confirmEmail: string, password: string, confirmPassword) {
+  postAccount(user) {
     let headers = new Headers();
     headers.append('Content-type', 'application/x-www-form-urlencoded');
 
     let options = new RequestOptions({ headers: headers });
 
     let body = new URLSearchParams();
-    body.append('user[name]', name);
-    body.append('user[email]', email);
-    body.append('user[email_confirmation]', confirmEmail);
-    body.append('user[password]', password);
-    body.append('user[password_confirmation]', confirmPassword);
+    body.append('user[name]', user.name);
+    body.append('user[email]', user.email);
+    body.append('user[email_confirmation]', user.confirmEmail);
+    body.append('user[password]', user.password);
+    body.append('user[password_confirmation]', user.confirmPassword);
 
     return new Promise((resolve, reject) => {
       this.http.post(this.api_url + '/users', body, options)
-        .map(response => {
-          console.log(response);
-          // this.userInfo.accessToken = response.headers.get("access-token");
-          // this.userInfo.client = response.headers.get("client");
-          // this.userInfo.email = response.headers.get("uid");
-
-          // Setting Storage
-          // this.storage.set('accessToken', this.userInfo.accessToken);
-          // this.storage.set('client', this.userInfo.client);
-          // this.storage.set('email', this.userInfo.email);
-          return response.json();
-        })
+        .map(response => response.json())
         .subscribe(data => {
           resolve(data);
         }, err => {
