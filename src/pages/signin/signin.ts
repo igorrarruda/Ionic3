@@ -6,6 +6,7 @@ import { ForgotPasswordPage } from '../forgot-password/forgot-password';
 
 //Services
 import { AuthenticationProvider } from '../../providers/authentication/authentication';
+import { Facebook } from '@ionic-native/facebook';
 
 @Component({
   selector: 'page-signin',
@@ -17,7 +18,8 @@ export class SigninPage {
 
   constructor(
     public navCtrl: NavController,
-    private api: AuthenticationProvider
+    private api: AuthenticationProvider,
+    private fb: Facebook
   ) { }
 
   forgotPassword() {
@@ -38,5 +40,11 @@ export class SigninPage {
           direction: 'forward'
         });
       });
+  }
+  
+  connectFacebook() {
+    this.fb.login(['public_profile', 'user_friends', 'email'])
+    .then((response) => console.log('Logged into Facebook!', response))
+    .catch(e => console.log('Error logging into Facebook', e));
   }
 }

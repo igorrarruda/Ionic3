@@ -1,16 +1,21 @@
-import { Component } from '@angular/core';
-import { Platform, Events } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { Nav, Platform, Events } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
 import { SigninPage } from '../pages/signin/signin';
+import { ProfilePage } from '../pages/profile/profile';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
+  @ViewChild(Nav) nav: Nav;
   rootPage: any = SigninPage;
+
+  profilePage: any = ProfilePage;
+  homePage: any = HomePage;
 
   constructor(
     platform: Platform,
@@ -26,9 +31,17 @@ export class MyApp {
       splashScreen.hide();
 
       events.subscribe("user:loaded", () => {
-        this.rootPage = HomePage;
+        this.nav.setRoot(HomePage)
       });
     });
+  }
+
+  openPage(page: any) {
+    this.nav.push(page);
+  }
+
+  logout() {
+
   }
 }
 

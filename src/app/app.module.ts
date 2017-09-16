@@ -12,6 +12,7 @@ import { SigninPage } from '../pages/signin/signin';
 import { SignupPage } from '../pages/signup/signup';
 import { ForgotPasswordPage } from '../pages/forgot-password/forgot-password';
 import { BarPage } from './../pages/bar/bar';
+import { ProfilePage } from './../pages/profile/profile';
 
 //Services
 import { AuthenticationProvider } from '../providers/authentication/authentication';
@@ -27,6 +28,9 @@ import { TruncatePipe } from './../pipes/truncate/truncate';
 //Components
 import { DrinkComponent } from '../components/drink/drink';
 
+import { Facebook } from '@ionic-native/facebook';
+
+
 @NgModule({
   declarations: [
     MyApp,
@@ -36,7 +40,8 @@ import { DrinkComponent } from '../components/drink/drink';
     ForgotPasswordPage,
     TruncatePipe,
     BarPage,
-    DrinkComponent
+    DrinkComponent,
+    ProfilePage
   ],
   imports: [
     HttpModule,
@@ -53,7 +58,8 @@ import { DrinkComponent } from '../components/drink/drink';
     SignupPage,
     ForgotPasswordPage,
     BarPage,
-    DrinkComponent
+    DrinkComponent,
+    ProfilePage
   ],
   providers: [
     StatusBar,
@@ -62,7 +68,8 @@ import { DrinkComponent } from '../components/drink/drink';
     AuthenticationProvider,
     UserInfoProvider,
     PartnersProvider,
-    UserInfoProvider
+    UserInfoProvider,
+    Facebook
   ]
 })
 export class AppModule { }
