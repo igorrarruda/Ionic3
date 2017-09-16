@@ -37,16 +37,57 @@
   }
 }
 
-// App Global Sass
-// --------------------------------------------------
-// Put style rules here that you want to apply globally. These
-// styles are for the entire app and not just one component.
-// Additionally, this file can be also used as an entry point
-// to import other Sass files to be included in the output CSS.
-//
-// Shared Sass variables, which can be used to adjust Ionic's
-// default Sass variables, belong in "theme/variables.scss".
-//
-// To declare rules for a specific mode, create a child rule
-// for the .md, .ios, or .wp mode classes. The mode class is
-// automatically applied to the <body> element in the app.
+// Menu Style
+.menu-inner{
+  .content{
+    background: url(../assets/bg/bg-black.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    background-size: cover;
+    text-align: center;
+  }
+
+  .user-indentification{
+    padding: 35px 0 20px;
+    border-bottom: solid 1px #474747;
+    margin: 0 35px 20px;
+    .user-name{
+      color: #d9ad00;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .user-email{
+      color: #767676;
+      font-size: 12px;
+    }
+  }
+
+  .scroll-content{
+    margin-top: 120px !important;
+  }
+
+  .item-block:first-child{
+    border: none;
+  }
+
+  .item-block:last-child{
+    border: none;
+  }
+
+  button{
+    background: transparent;
+    .item-inner{
+      background-image: none !important;
+      border: none !important;
+    }
+    .label{
+      color: #ffffff;
+      font-weight: 500;
+      font-size: 16px;
+      text-transform: uppercase;
+      ion-icon{
+        padding: 0 10px;
+        font-size: 24px;
+      }
+    }
+  }
+}

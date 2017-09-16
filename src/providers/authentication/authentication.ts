@@ -39,7 +39,7 @@ export class AuthenticationProvider {
           this.userInfo.accessToken = response.headers.get("access-token");
           this.userInfo.client = response.headers.get("client");
           this.userInfo.email = response.headers.get("uid");
-
+          
           // Setting Storage
           this.storage.set('accessToken', this.userInfo.accessToken);
           this.storage.set('client', this.userInfo.client);
@@ -47,6 +47,8 @@ export class AuthenticationProvider {
           return response.json();
         })
         .subscribe(data => {
+          this.userInfo.name = data.data.name;
+          this.storage.set('name', this.userInfo.name);
           resolve(data);
         }, err => {
           reject(err);

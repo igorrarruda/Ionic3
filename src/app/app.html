@@ -1,25 +1,38 @@
 <ion-menu [content]="content" [swipeEnabled]="false">
   <ion-header>
-    <ion-toolbar>
-    <ion-title>Menu</ion-title>
-    </ion-toolbar>
+    <div class="user-indentification">
+      <div class="user-name">
+        {{ userInfo.name }}
+      </div>
+      <div class="user-email">
+        {{ userInfo.email }}
+      </div>
+    </div>
   </ion-header>
   <ion-content>
     <ion-list>
-    <button ion-item (tap)="openPage(homePage)">
-        Home
-    </button>
-    <button ion-item (tap)="openPage(profilePage)">
-        Profile
-    </button>
-    <button ion-item (tap)="openPage()">
-        Events
-    </button>
-    <button ion-item (tap)="logout()">
-        Close Menu
-    </button>
+      <button ion-item (tap)="openPage(homePage)" menuClose>
+        <ion-icon name="md-pint"></ion-icon>
+        Parceiros
+      </button>
+      <button ion-item (tap)="openPage()" menuClose>
+        <ion-icon name="card"></ion-icon>
+        Meu Cartão
+      </button>
+      <button ion-item (tap)="openPage()" menuClose>
+        <ion-icon name="star"></ion-icon>
+        Planos
+      </button>
+      <button ion-item (tap)="openPage(profilePage)" menuClose>
+        <ion-icon name="contact"></ion-icon>
+        Meu Perfil
+      </button>
+      <button ion-item (tap)="logout()" menuClose>
+        <ion-icon name="md-log-out"></ion-icon>
+        Sair
+      </button>
     </ion-list>
   </ion-content>
 </ion-menu>
-  
+
 <ion-nav id="nav" #content [root]="rootPage"></ion-nav>

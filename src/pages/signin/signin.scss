@@ -1,3 +1,24 @@
+$break-small: 420px;
+$break-large: 1024px;
+
+@mixin respond-to($media){
+  @if $media == hendhelds{
+    @media only screen and (max-width: $break-small){ @content; }
+  }
+  @else if $media == medium-screens{
+    @media only screen and (min-width: $break-small + 1) and (max-width: $break-large -1){ @content; }
+  }
+  @else if $media == wide-screen{
+    @media only screen and (min-width: $break-large){ @content; }
+  }
+}
+
+@mixin center(){
+  display: block;
+  margin: auto;
+  text-align: center;
+}
+
 page-signin {
   .scroll-content{
     background: url(../assets/bg/beer_bg.jpg) no-repeat center center fixed;
@@ -15,6 +36,19 @@ page-signin {
   }
 
   .infos{
+    @include respond-to(hendhelds){
+      width: 100%
+    }
+    @include respond-to(medium-screens){
+      width: 75%
+    }
+    @include respond-to(wide-screen){
+      position: absolute;
+      left: 50%;
+      top: 30%;
+      transform: translate(-50%, -50%);
+      width: 75%
+    }
     margin-top: 10vh;
 
     .facebook-button{
@@ -23,7 +57,8 @@ page-signin {
 
     .signup-wrapper{
       margin-top: 16px;
-
+      @include center();
+      
       .signup{
         color: color($colors, SCyellow);
         letter-spacing: 0.1rem;
